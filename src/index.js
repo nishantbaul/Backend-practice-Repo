@@ -15,12 +15,6 @@ connectDB
 
 
 
-
-
-
-
-
-
 //1st method to connect database
  /*
  import mongoose  from "mongoose";
