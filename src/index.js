@@ -2,6 +2,7 @@
 // require('dotenv').config({path:'./env'}) THis is old syntax
 
 //2nd method of connect databas
+ 
 import dotenv from "dotenv"
 import connectDB from "./db/index.js";
 
@@ -17,8 +18,47 @@ connectDB
 })
 .catch((err) =>{
     console.log("MONGO db connection failed !",err);
-})
+}) 
 
+/* 
+
+import mongoose from "mongoose";
+import { DB_NAME } from "./constant.js";   // FIXED PATH (must start with ./)
+import express from "express";
+
+const app = express();
+
+(async () => {
+    try {
+        // CHECK if environment variables exist
+        if (!process.env.MONGODB_URI) {
+            throw new Error("MONGODB_URI is missing in environment variables");
+        }
+        if (!DB_NAME) {
+            throw new Error("DB_NAME is missing in constant.js");
+        }
+
+        // CONNECT TO DATABASE
+        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
+        console.log("✔ MongoDB Connected Successfully");
+
+        // HANDLE APP ERRORS
+        app.on("error", (error) => {
+            console.log("ERROR:", error);
+            throw error;
+        });
+
+        // START SERVER
+        const PORT = process.env.PORT || 8000;
+        app.listen(PORT, () => {
+            console.log(`🚀 Server is running on port ${PORT}`);
+        });
+
+    } catch (error) {
+        console.error("❌ ERROR:", error);
+        process.exit(1); // Exit the app on failure
+    }
+})(); */
 
 
 
@@ -26,7 +66,7 @@ connectDB
 //1st method to connect database
  /*
  import mongoose  from "mongoose";
- import {DB_NAME} from "/constant"; 
+ import {DB_NAME} from "/constant.js"; 
  import express from "express"
 const app=express()
 
@@ -42,7 +82,6 @@ const app=express()
         })
     } catch(error){
         console.error("ERROR:",error)
-        throw err
+        throw error
     }
-})() 
-*/
+})() */

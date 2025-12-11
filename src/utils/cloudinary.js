@@ -46,5 +46,5 @@ import fs from "fs"
 })();
 
 export {uploadResult}
-export {optimizeUrl}
-export {autoCropUrl}
+//export {optimizeUrl}
+//export {autoCropUrl}
