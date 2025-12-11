@@ -1,8 +1,8 @@
 //connection of batabase!
-// require('dotenv').config({path:'./env'}) THis is old syntax
+require('dotenv').config({path:'./env'}) 
 
 //2nd method of connect databas
- 
+ /*
 import dotenv from "dotenv"
 import connectDB from "./db/index.js";
 import {app} from './app.js'
@@ -20,69 +20,33 @@ connectDB
 .catch((err) =>{
     console.log("MONGO db connection failed !",err);
 }) 
+    */
 
-/* 
 
-import mongoose from "mongoose";
-import { DB_NAME } from "./constant.js";   // FIXED PATH (must start with ./)
+//1st method to connect database
+ 
+ import mongoose from "mongoose";
+import { DB_NAME } from "./constant.js";
 import express from "express";
 
 const app = express();
 
 (async () => {
     try {
-        // CHECK if environment variables exist
-        if (!process.env.MONGODB_URI) {
-            throw new Error("MONGODB_URI is missing in environment variables");
-        }
-        if (!DB_NAME) {
-            throw new Error("DB_NAME is missing in constant.js");
-        }
-
-        // CONNECT TO DATABASE
         await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
-        console.log("✔ MongoDB Connected Successfully");
 
-        // HANDLE APP ERRORS
         app.on("error", (error) => {
             console.log("ERROR:", error);
             throw error;
         });
 
-        // START SERVER
-        const PORT = process.env.PORT || 8000;
-        app.listen(PORT, () => {
-            console.log(`🚀 Server is running on port ${PORT}`);
+        app.listen(process.env.PORT, () => {
+            console.log(`App is listening on port ${process.env.PORT}`);
         });
 
     } catch (error) {
-        console.error("❌ ERROR:", error);
-        process.exit(1); // Exit the app on failure
+        console.error("ERROR:", error);
+        throw error;
     }
-})(); */
+})();
 
-
-
-
-//1st method to connect database
- /*
- import mongoose  from "mongoose";
- import {DB_NAME} from "/constant.js"; 
- import express from "express"
-const app=express()
-
-(async () =>{
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        app.on("error",(error)=>{
-            console.log("ERROR:",error)
-            throw error
-        })
-        app.listen(process.env.PORT, ()=>{
-            console.log(`App is listening on port ${process.env.PORT}`)
-        })
-    } catch(error){
-        console.error("ERROR:",error)
-        throw error
-    }
-})() */
