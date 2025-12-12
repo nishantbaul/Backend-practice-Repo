@@ -45,6 +45,6 @@ import fs from "fs"
     console.log(autoCropUrl);    
 })();
 
-export {uploadResult}
+export {uoloadOnClousinary}
 export {optimizeUrl}
 export {autoCropUrl}

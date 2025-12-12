@@ -52,7 +52,7 @@ const userSchema = Schema({
 
 userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hast(this.password,8)
+    this.password = await bcrypt.hast(this.password,8)
     next() 
 })
 
